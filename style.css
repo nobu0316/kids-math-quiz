@@ -1,0 +1,201 @@
+/* ページ全体の基本設定です */
+body {
+  margin: 0;
+  font-family: "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+  background: #f6f0d8;
+  color: #243044;
+}
+
+/* 画面の中央にアプリを置きます */
+.app {
+  width: min(92%, 760px);
+  margin: 32px auto;
+  padding: 28px;
+  background: #ffffff;
+  border: 4px solid #243044;
+  border-radius: 8px;
+  box-shadow: 8px 8px 0 #f4b942;
+  text-align: center;
+}
+
+h1 {
+  margin: 0 0 20px;
+  font-size: 44px;
+}
+
+h2 {
+  margin: 0 0 16px;
+  font-size: 36px;
+}
+
+h3 {
+  margin: 24px 0 12px;
+  font-size: 26px;
+}
+
+/* それぞれの画面の余白をそろえます */
+.screen {
+  padding: 12px 0;
+}
+
+/* hidden クラスがついた画面は表示しません */
+.hidden {
+  display: none;
+}
+
+.lead {
+  font-size: 24px;
+  line-height: 1.6;
+}
+
+.choice-title {
+  margin-top: 26px;
+  margin-bottom: 12px;
+  font-size: 28px;
+}
+
+.difficulty-buttons,
+.operation-buttons {
+  display: grid;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+/* 小学生が押しやすいようにボタンを大きくしています */
+button {
+  font-family: inherit;
+  font-size: 26px;
+  font-weight: bold;
+  border: 3px solid #243044;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  transform: translateY(-2px);
+}
+
+.difficulty-button,
+.operation-button,
+.main-button {
+  min-height: 72px;
+  padding: 14px 24px;
+  background: #5fc8d7;
+  color: #111827;
+}
+
+.main-button {
+  display: block;
+  width: min(100%, 420px);
+  margin: 16px auto 0;
+}
+
+/* main-button と hidden が同時についたボタンも、きちんと隠します */
+.main-button.hidden {
+  display: none;
+}
+
+.difficulty-button {
+  background: #f7df75;
+}
+
+.difficulty-button:nth-child(2) {
+  background: #f4a261;
+}
+
+.difficulty-button:nth-child(3) {
+  background: #c084fc;
+}
+
+/* 選ばれている難易度が分かるように、少し目立たせます */
+.difficulty-button.selected {
+  outline: 6px solid #243044;
+  outline-offset: 3px;
+}
+
+.operation-button:nth-child(2) {
+  background: #f28b82;
+}
+
+.operation-button:nth-child(3) {
+  background: #8fd17f;
+}
+
+.question-count {
+  margin: 0 0 16px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.question {
+  margin: 20px 0;
+  font-size: 56px;
+  font-weight: bold;
+}
+
+.answer-input {
+  width: min(90%, 300px);
+  margin-bottom: 18px;
+  padding: 14px;
+  font-size: 34px;
+  text-align: center;
+  border: 3px solid #243044;
+  border-radius: 8px;
+}
+
+.result-message {
+  min-height: 40px;
+  margin: 18px 0 0;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.correct {
+  color: #14883d;
+}
+
+.wrong {
+  color: #d12f2f;
+}
+
+.result-info {
+  margin: 12px 0;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.mistake-area {
+  margin: 18px auto;
+  padding: 16px;
+  background: #f7f9fc;
+  border: 3px solid #d7deea;
+  border-radius: 8px;
+  text-align: left;
+}
+
+.mistake-list {
+  margin: 0;
+  padding-left: 28px;
+  font-size: 22px;
+  line-height: 1.7;
+}
+
+/* スマホでも見やすいように少しだけ文字サイズを調整します */
+@media (max-width: 520px) {
+  .app {
+    margin: 16px auto;
+    padding: 18px;
+  }
+
+  h1 {
+    font-size: 36px;
+  }
+
+  .question {
+    font-size: 44px;
+  }
+
+  button {
+    font-size: 22px;
+  }
+}
