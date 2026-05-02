@@ -13,10 +13,19 @@
   <main class="app">
     <h1>計算クイズ</h1>
 
-    <!-- 最初に計算の種類を選ぶ画面です -->
+    <!-- 最初に難易度と計算の種類を選ぶ画面です -->
     <section id="start-screen" class="screen">
-      <p class="lead">計算の種類をえらんで、10問にチャレンジしよう！</p>
+      <p class="lead">難易度と計算の種類をえらんで、10問にチャレンジしよう！</p>
 
+      <!-- 難易度を選ぶボタンです。最初は「かんたん」が選ばれています -->
+      <h2 class="choice-title">難易度</h2>
+      <div class="difficulty-buttons">
+        <button class="difficulty-button selected" data-difficulty="easy">かんたん</button>
+        <button class="difficulty-button" data-difficulty="normal">ふつう</button>
+        <button class="difficulty-button" data-difficulty="hard">むずかしい</button>
+      </div>
+
+      <h2 class="choice-title">計算の種類</h2>
       <div class="operation-buttons">
         <button class="operation-button" data-operation="add">足し算</button>
         <button class="operation-button" data-operation="subtract">引き算</button>
@@ -38,13 +47,22 @@
 
     <!-- 最後の結果を表示する画面です -->
     <section id="finish-screen" class="screen hidden">
-      <h2>結果発表</h2>
-      <p id="score" class="score">10問中 0問 正解！</p>
+      <!-- 通常結果と復習結果で、JavaScriptが見出しを切り替えます -->
+      <h2 id="finish-title">結果発表</h2>
+
+      <!-- 正解した数を表示します -->
+      <p id="correct-result" class="result-info">10問中 0問正解</p>
+
+      <!-- クイズにかかった時間を表示します -->
+      <p id="time-result" class="result-info">かかった時間: 0秒</p>
 
       <div class="mistake-area">
-        <h3>間違えた問題</h3>
+        <h3 id="mistake-title">間違えた問題</h3>
         <ul id="mistake-list" class="mistake-list"></ul>
       </div>
+
+      <!-- 間違えた問題があるときだけ、JavaScriptでこのボタンを表示します -->
+      <button id="review-button" class="main-button hidden">間違えた問題を復習する</button>
 
       <button id="restart-button" class="main-button">もう一度やる</button>
     </section>
