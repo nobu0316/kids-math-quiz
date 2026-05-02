@@ -1,14 +1,26 @@
+/* スマホでも横幅計算がずれないようにします */
+* {
+  box-sizing: border-box;
+}
+
 /* ページ全体の基本設定です */
+html {
+  width: 100%;
+  overflow-x: hidden;
+}
+
 body {
   margin: 0;
+  min-height: 100vh;
   font-family: "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
   background: #f6f0d8;
   color: #243044;
+  overflow-x: hidden;
 }
 
 /* 画面の中央にアプリを置きます */
 .app {
-  width: min(92%, 760px);
+  width: min(92vw, 760px);
   margin: 32px auto;
   padding: 28px;
   background: #ffffff;
@@ -46,6 +58,7 @@ h3 {
 .lead {
   font-size: 24px;
   line-height: 1.6;
+  overflow-wrap: anywhere;
 }
 
 .choice-title {
@@ -57,18 +70,22 @@ h3 {
 .difficulty-buttons,
 .operation-buttons {
   display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
   margin-top: 12px;
 }
 
-/* 小学生が押しやすいようにボタンを大きくしています */
+/* 小学生が押しやすいように、ボタンを指で押せる大きさにしています */
 button {
   font-family: inherit;
   font-size: 26px;
   font-weight: bold;
+  line-height: 1.25;
   border: 3px solid #243044;
   border-radius: 8px;
   cursor: pointer;
+  touch-action: manipulation;
+  word-break: keep-all;
 }
 
 button:hover {
@@ -78,6 +95,7 @@ button:hover {
 .difficulty-button,
 .operation-button,
 .main-button {
+  width: 100%;
   min-height: 72px;
   padding: 14px 24px;
   background: #5fc8d7;
@@ -131,10 +149,12 @@ button:hover {
   margin: 20px 0;
   font-size: 56px;
   font-weight: bold;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
 }
 
 .answer-input {
-  width: min(90%, 300px);
+  width: min(100%, 360px);
   margin-bottom: 18px;
   padding: 14px;
   font-size: 34px;
@@ -162,6 +182,7 @@ button:hover {
   margin: 12px 0;
   font-size: 32px;
   font-weight: bold;
+  overflow-wrap: anywhere;
 }
 
 .mistake-area {
@@ -178,17 +199,47 @@ button:hover {
   padding-left: 28px;
   font-size: 22px;
   line-height: 1.7;
+  overflow-wrap: anywhere;
 }
 
-/* スマホでも見やすいように少しだけ文字サイズを調整します */
-@media (max-width: 520px) {
+/* 間違えた問題の長い文章も、スマホで画面外にはみ出さないようにします */
+.mistake-list li {
+  margin-bottom: 8px;
+  word-break: break-word;
+}
+
+/* 幅が狭いタブレットやスマホでは、ボタンを1列にして押しやすくします */
+@media (max-width: 640px) {
+  .difficulty-buttons,
+  .operation-buttons {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
   .app {
     margin: 16px auto;
-    padding: 18px;
+    padding: 20px;
+    box-shadow: 5px 5px 0 #f4b942;
   }
 
   h1 {
     font-size: 36px;
+  }
+
+  h2 {
+    font-size: 30px;
+  }
+
+  h3 {
+    font-size: 24px;
+  }
+
+  .lead {
+    font-size: 21px;
+  }
+
+  .choice-title {
+    font-size: 25px;
   }
 
   .question {
@@ -197,5 +248,70 @@ button:hover {
 
   button {
     font-size: 22px;
+  }
+
+  .difficulty-button,
+  .operation-button,
+  .main-button {
+    min-height: 64px;
+    padding: 14px 16px;
+  }
+
+  .answer-input {
+    min-height: 64px;
+    font-size: 30px;
+  }
+
+  .result-info {
+    font-size: 26px;
+  }
+
+  .mistake-area {
+    padding: 14px;
+  }
+
+  .mistake-list {
+    padding-left: 22px;
+    font-size: 19px;
+  }
+}
+
+/* とても狭いスマホでは、余白をさらに減らして横スクロールを防ぎます */
+@media (max-width: 380px) {
+  .app {
+    width: calc(100vw - 20px);
+    margin: 10px auto;
+    padding: 14px;
+    border-width: 3px;
+    box-shadow: 3px 3px 0 #f4b942;
+  }
+
+  h1 {
+    font-size: 31px;
+  }
+
+  h2 {
+    font-size: 26px;
+  }
+
+  .lead,
+  .question-count {
+    font-size: 18px;
+  }
+
+  .question {
+    font-size: 38px;
+  }
+
+  .answer-input {
+    font-size: 28px;
+  }
+
+  .result-message {
+    font-size: 23px;
+  }
+
+  .result-info {
+    font-size: 23px;
   }
 }
